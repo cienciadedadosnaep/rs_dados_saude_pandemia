@@ -61,9 +61,9 @@ objeto_0 <- dados %>%
 exportJson0 <- toJSON(objeto_0)
 
 
-titulo<-T_ST_P_No_SAUDE$TITULO[2]
+titulo<-T_ST_P_No_SAUDE$TITULO[1]
 subtexto<-"DATASUS"
-link <- T_ST_P_No_SAUDE$LINK[2]
+link <- T_ST_P_No_SAUDE$LINK[1]
 
 data_axis <- paste('[',gsub(' ',',',
                             paste(paste(as.vector(objeto_0[[1]]$ano)),
@@ -92,9 +92,9 @@ texto<-paste('{"title":{"text":"',titulo,
 texto<-noquote(texto)
 
 
-write(exportJson0,file = paste('data/',gsub('.csv','',T_ST_P_No_SAUDE$NOME_ARQUIVO_JS[2]),
+write(exportJson0,file = paste('data/',gsub('.csv','',T_ST_P_No_SAUDE$NOME_ARQUIVO_JS[1]),
                                '.json',sep =''))
-write(texto,file = paste('data/',T_ST_P_No_SAUDE$NOME_ARQUIVO_JS[2],
+write(texto,file = paste('data/',T_ST_P_No_SAUDE$NOME_ARQUIVO_JS[1],
                          sep =''))
 
 #}
