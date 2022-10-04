@@ -46,15 +46,19 @@ library(RJSONIO)
 # #dbHasCompleted(rs)
 # #dbClearResult(rs)
 
-
+library(lubridate)
 library(readr)
 library(readr)
 all_data_v02 <- read_csv("data/obitos_covid.csv", 
-                                      col_types = cols(DATA = col_date(format = "%m/%d/%Y")))
+                         col_types = cols(DATA = col_date(format = "%d/%m/%Y")))
 #Qual é o número de mortes por COVID de em Salvador (acumulativo)?
 dados <- all_data_v02 %>% select(DATA, -CONFIRMADO, OBITO) %>%  arrange(OBITO)
-names(dados) <- c('mês','Total')
-dados$mês <-  format(dados$mês, '%m/%Y')
+names(dados) <- c('data','Total')
+
+dados %<>% mutate(ano = year(data), mes = month(data)) # Criação das variáveis ano e mês
+dados %<>% group_by(ano, mes) %>% summarise(max(Total))
+dados$MY <- paste(dados$mes, "-", dados$ano, sep = "") #Agrupamento do mes
+names(dados) <- c('Ano','mes', 'Total', 'Mês')
 
 
 
@@ -93,9 +97,9 @@ simbolo_linhas <- c('emptyCircle','emptyTriangle','emptySquare',
 
 objeto_0 <- dados %>%
   #filter(classe %in% c(classes[1])) %>%
-  select(mês,Total) %>% #filter(ano<2019) %>%
+  select(Total, `Mês`) %>% #filter(ano<2019) %>%
   arrange(Total) %>%
-  mutate(mês = as.character(mês)) %>% list()               
+  mutate(mês = as.character(`Mês`)) %>% list()               
 
 exportJson0 <- toJSON(objeto_0)
 
@@ -105,7 +109,7 @@ subtexto<-"Fonte: Secretaria Municipal de Saúde de Salvador"
 link <- T_ST_P_No_SAUDE$LINK[2]
 
 data_axis <- paste('["',gsub(' ','","',
-                             paste(paste(as.vector(objeto_0[[1]]$mês)),
+                             paste(paste(as.vector(objeto_0[[1]]$`Mês`)),
                                    collapse = ' ')),'"]',sep = '')
 
 
@@ -125,7 +129,7 @@ texto<-paste('{"title":{"text":"',titulo,
              '"restore":{},"saveAsImage":{}}},"legend":{"show":true,"top":"bottom"},"xAxis":{"type":"category",',
              '"data":',data_axis,'},',
              '"yAxis":{"type":"value","axisLabel":{"formatter":"{value}"}},',
-             '"series":[{"name":"',nomes[2],'","data":',data_serie,',',
+             '"series":[{"name":"',nomes[3],'","data":',data_serie,',',
              '"type":"bar","color":"',corsec_recossa_azul[5],'","showBackground":true,',
              '"backgroundStyle":{"color":"rgba(180, 180, 180, 0.2)"},"symbol":"',simbolo_linhas[4],
              '","symbolSize":10,"itemStyle":{"borderRadius":10,"borderColor":"',corsec_recossa_azul[5],'","borderWidth":2}}',
