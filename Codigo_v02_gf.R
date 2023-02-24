@@ -17,9 +17,13 @@ library(RJSONIO)
 #dados_farmacia <- read_delim("data/dados_farmacia.csv", 
 #                                   delim = ";", escape_double = FALSE, trim_ws = TRUE)
 #names(dados_farmacia)
-library(readr)
+
 confirmadoObito <- read_csv("data/confirmadoObito.csv", 
                             col_types = cols(DATA = col_date(format = "%d/%m/%Y")))
+
+confirmadoObito %<>% mutate(ano=year(DATA),trimestre = quarter(DATA))
+
+confirmadoObito %>% group_by(ano,trimestre) %>% summarise(total = sum(CONFIRMADO))
 
 #dbHasCompleted(rs)
 #dbClearResult(rs)
