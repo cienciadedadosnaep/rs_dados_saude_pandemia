@@ -1,2 +1,0 @@
-TEMA,SUBTEMA,NUM_PERG,PERGUNTA,NOME_ARQUIVO_JS,CODIGO,LINK,TAG_GITHUB,END_TRANSFORMACOES,DESCRICAO,FREQ_DATA,TP_GRAFICO,TITULO
-SAUDE,PANDEMIA,,Como se deu o aumento no número de farmácias no período pandêmico em Salvador?,dados_farmacias.csv,,http://tabnet.datasus.gov.br/cgi/deftohtm.exe?cnes/cnv/estabbr.def,(re)Conhecendo Salvador,,,mensal,padrão,Aumento da criação de farmácias em decorrência do COVID
