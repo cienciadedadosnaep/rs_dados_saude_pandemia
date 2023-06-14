@@ -3,4 +3,5 @@
 "SAUDE";"PANDEMIA";"Qual é o número de mortes por COVID em Salvador?";"obitos_covid.csv"
 "SAUDE";"PANDEMIA";"Qual a proporção entre casos confirmados e pessoas curadas do COVID em Salvador?";NA
 "SAUDE";"PANDEMIA";"Qual a quantidade de casos confirmados de COVID em Salvador?";NA
-"SAUDE";"PANDEMIA";"Qual o número de casos de COVID-19 com status confirmado em Salvador?";"status_confirmado.csv"
+"SAUDE";"PANDEMIA";"Qual foi o número de casos de COVID-19 com status confirmado em Salvador?";"status_confirmado.csv"
+"SAUDE";"PANDEMIA";"Qual foi o número de vacinas contra a COVID-19 aplicadas por mês em Salvador?";"vacinas_aplicadas.csv"
