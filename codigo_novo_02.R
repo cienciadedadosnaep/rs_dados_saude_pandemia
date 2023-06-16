@@ -25,19 +25,19 @@ dados <- vacinacao_geral %>%
 #view(dados)
 glimpse(dados)
 
-#escrever por extenso o mes e ano
+#escrever por extenso o mes e ano (as vígulas servem para separar um dado do outro posteriormente no data_axis)
 dados$mes_ano <- as.Date(paste(dados$mes_ano, "01", sep = "-"))
 dados$ano_mes_escrito <- paste(format(dados$mes_ano, "%B"), format(dados$mes_ano, "%Y"),",")
 
+#arredondamento
 dados %<>% mutate(Soma = round(Soma/1000,2))
 
+#separar dados que irão para o gráfico
 dados <- dados[,c("Soma", "ano_mes_escrito")]
-
-
 names(dados) <- c("Número de vacinas aplicadas", "Data")
 nomes <- names(dados)
 
-
+#tirar vígula do último dado
 dados |>
   mutate(Data= as.character(Data))
 dados <- dados |>
