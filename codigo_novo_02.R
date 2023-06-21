@@ -74,9 +74,9 @@ objeto_0 <- dados %>%
 exportJson0 <- toJSON(objeto_0)
 
 
-titulo<-T_ST_P_No_SAUDE$TITULO[6]
+titulo<-T_ST_P_No_SAUDE$TITULO[4]
 subtexto<-"Fonte: Vacinômetro Saúde Salvador"
-link <- T_ST_P_No_SAUDE$LINK[6]
+link <- T_ST_P_No_SAUDE$LINK[4]
 
 data_axis <- paste('["',gsub(',','","',
                              paste(paste(as.vector(objeto_0[[1]]$Data)),
@@ -110,12 +110,12 @@ texto<-paste('{"title":{"text":"',titulo,
 texto<-noquote(texto)
 
 
-write(exportJson0,file = paste('data/',gsub('.csv','',T_ST_P_No_SAUDE$NOME_ARQUIVO_JS[6]),
+write(exportJson0,file = paste('data/',gsub('.csv','',T_ST_P_No_SAUDE$NOME_ARQUIVO_JS[4]),
                                '.json',sep =''))
-write(texto,file = paste('data/',T_ST_P_No_SAUDE$NOME_ARQUIVO_JS[6],
+write(texto,file = paste('data/',T_ST_P_No_SAUDE$NOME_ARQUIVO_JS[4],
                          sep =''))
 
-#}
+#
 
 # Arquivo dedicado a rotina de atualizacao global. 
 
